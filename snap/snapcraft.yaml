@@ -1,0 +1,32 @@
+name: thingy52
+version: "0.1"
+base: core18
+summary: Connect with Nordic Thingy52
+description: |
+  Connect over BLE using bluez with a Nordic Thingy52.
+
+grade: stable
+confinement: strict
+
+apps:
+  thingy52:
+    command: python3 $SNAP/bin/thingy52
+    plugs:
+      - bluetooth-control
+      - network
+      - network-bind
+  find:
+    command: python3 $SNAP/bin/find-thingy52.py
+    plugs:
+      - bluetooth-control
+      - network
+      - network-bind
+
+parts:
+  find-thingy52-script:
+    source: scripts
+    plugin: dump
+  bluepy:
+    plugin: python
+    source: https://github.com/IanHarvey/bluepy.git
+    build-packages: [build-essential, libglib2.0-dev]
