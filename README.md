@@ -1,9 +1,28 @@
 # Thingy52 Snap
+[![Snap Status](https://build.snapcraft.io/badge/anonymouse64/thingy52-snap.svg)](https://build.snapcraft.io/user/anonymouse64/thingy52-snap)
+
+[![snap store badge](https://raw.githubusercontent.com/snapcore/snap-store-badges/master/EN/%5BEN%5D-snap-store-black-uneditable.png)](https://snapcraft.io/thingy52)
+
 
 This snap contains the `bluepy` package as well as a helper utility script to find Thingy52 BLE devices.
 
+## Install from the store
 
-## Building
+The snap is published in the snap store at snapcraft.io/thingy52. To install, make sure snapd is installed and run:
+
+```bash
+$ snap install thingy52
+```
+
+After installing you will need to connect the bluetooth-control interface:
+
+```bash
+$ snap connect thingy52:bluetooth-control
+```
+
+## Install + build from source
+
+### Building with snapcraft
 
 To build, install snapcraft and multipass:
 
@@ -16,13 +35,13 @@ Then build the snap with snapcraft:
 
 ```
 $ git clone https://github.com/anonymouse64/thingy52-snap.git
-$ cd thingy52
+$ cd thingy52-snap
 $ snapcraft
 ```
 
-## Installing
+### Installing the snap file
 
-After building the snap, install the snap with:
+After building the snap, install the `*.snap` file with:
 
 ```bash
 $ snap install --dangerous thingy52*.snap
@@ -39,7 +58,7 @@ $ snap connect thingy52:bluetooth-control
 The main command is `thingy52` which is the same as the thingy52.py script shipped with `bluepy`:
 
 ```bash
-$ sudo /snap/bin/thingy52 --help
+$ sudo thingy52 --help
 usage: thingy52 [-h] [-n COUNT] [-t T] [--temperature] [--pressure]
                 [--humidity] [--gas] [--color] [--keypress] [--tap]
                 [--orientation] [--quaternion] [--stepcnt] [--rawdata]
@@ -74,7 +93,7 @@ optional arguments:
   --microphone
 ```
 
-If you don't know the MAC address of your Thingy52 you can use the `find`, optionally specifying how long to scan for with the `--scantime` option and the name of the device to search for with `--name`. See:
+If you don't know the MAC address of your Thingy52 you can use the `find` command, optionally specifying how long to scan for with the `--scantime` option and the name of the device to search for with `--name`. See:
 
 ```bash
 $ sudo thingy52.find --name MyThingy
