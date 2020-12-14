@@ -5,6 +5,12 @@ summary: Connect with Nordic Thingy52
 description: |
   Connect over BLE using bluez with a Nordic Thingy52.
 
+# use snapd 2.45 as a reference point for modern snapd's, since there
+# are really old snapd's out there on i.e. raspian which don't work
+# when this snap is the first one installed, missing the core snap
+# from being installed and thus having no interfaces available
+assumes: [snapd2.45]
+
 grade: stable
 confinement: strict
 
